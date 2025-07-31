@@ -2,7 +2,7 @@
 
 O **AutoLux Frontend** é a interface de usuário desenvolvida com **Next.js** e **TypeScript**, para conectar e consumir a API do **AutoLux API**. Ele oferece uma experiência de usuário moderna e interativa para as funcionalidades do backend, como gerenciamento de veículos, pedidos, favoritos, simulação de financiamento e muito mais.
 
-**Nota**: O projeto está em andamento, e várias melhorias e funcionalidades adicionais estão sendo planejadas para as próximas versões. Este é apenas o começo, e as próximas atualizações vão aprimorar ainda mais a experiência do usuário.
+**Nota**: Este README é baseado no planejamento para o projeto completo, porém, o desenvolvimento do frontend está no início. Várias funcionalidades e melhorias estão sendo planejadas para as próximas versões. Este é apenas o começo!!
 
 ## ⚙️ Tecnologias Utilizadas
 
@@ -53,3 +53,4 @@ O **AutoLux Frontend** é a interface de usuário desenvolvida com **Next.js** e
 
 ### 🔁 Integração Contínua (CI)
 - **GitHub Actions**: Integração com GitHub Actions para testes automáticos e builds contínuos a cada push ou pull request.
+
