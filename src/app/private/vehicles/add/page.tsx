@@ -13,9 +13,9 @@ const carSchema = z.object({
   name: z.string().min(3, { message: "Nome do carro é obrigatório e deve ter pelo menos 3 caracteres." }),
   description: z.string().min(0, { message: "O campo descrição é obrigatório!" }),
   model: z.string().min(1, { message: "Modelo é obrigatório!" }),
-  price: z.number().positive({ message: "Preço deve ser um valor positivo!" }),
-  year: z.string().min(1900, { message: "O ano deve ser maior que 1900!" }),
-  km: z.number().min(0, { message: "O KM não pode ser negativo!" }),
+  price: z.string().min(0, { message: "Preço deve ser um valor positivo!" }),
+  year: z.string().min(0, { message: "O ano deve ser maior que 1900!" }),
+  km: z.string().min(0, { message: "O KM não pode ser negativo!" }),
   color: z.string().min(0, { message: "Você precisa colocar uma cor!" }),
   transmission: z.string().min(0, { message: "O campo Transmissão é obrigatório!" }),
   city: z.string().min(0, { message: "O campo cidade é obrigatório!" }),
@@ -25,7 +25,7 @@ const carSchema = z.object({
   engine: z.string().min(0, { message: "O campo é obrigatório!" }),
   categoryId: z.string().min(1, { message: "A categoria é obrigatória!" }),
   brandId: z.string().min(1, { message: "A marca é obrigatória!" }),
-});
+})
 
 type CarFormInputs = z.infer<typeof carSchema>;
 
@@ -52,11 +52,10 @@ export default function AddVehicles() {
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
   useEffect(() => {
-    if (categorySearch.trim() === '' || brandSearch.trim() === '') return;
-
     async function getCategories() {
       try {
         const response = await api.get("/categories");
+        console.log("Hellooooooooooooooooo")
         setCategories(response.data);
         setFilteredCategories(response.data);
       } catch (err) {
@@ -76,7 +75,7 @@ export default function AddVehicles() {
 
     getCategories();
     getBrands();
-  }, [categorySearch, brandSearch]);
+  }, []);
 
   const handleCategorySearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -114,33 +113,27 @@ export default function AddVehicles() {
     const files = event.target.files;
     if (files) {
       const newImages = Array.from(files);
-      setImages(prevImages => [...prevImages, ...newImages]);
+      setImages((prevImages) => [...prevImages, ...newImages]);
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreviews(prevPreviews => [...prevPreviews, reader.result as string]);
-      };
-
-      Array.from(files).forEach(file => reader.readAsDataURL(file));
+      const newImagePreviews = newImages.map((file) => URL.createObjectURL(file));
+      setImagePreviews((prevPreviews) => [...prevPreviews, ...newImagePreviews]);
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CarFormInputs>({
+  const { register, handleSubmit, formState: { errors } } = useForm<CarFormInputs>({
     resolver: zodResolver(carSchema),
   });
 
+  console.log(errors)
   const onSubmit: SubmitHandler<CarFormInputs> = async (data) => {
+    console.log("Dados do formulário:", data);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("model", data.model);
-    formData.append("price", data.price.toString());
+    formData.append("price", data.price);
     formData.append("year", data.year);
-    formData.append("km", data.km.toString());
+    formData.append("km", data.km);
     formData.append("color", data.color);
     formData.append("transmission", data.transmission);
     formData.append("city", data.city);
@@ -172,7 +165,7 @@ export default function AddVehicles() {
   return (
     <main>
       <h2 className="text-center mt-10 mb-4 font-bold text-2xl">Adicione seu veiculo</h2>
-      <div className="max-w-5xl mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto">
         <div className="flex flex-col gap-2">
           <div className="w-full h-60 border-1 border-l-gray-800 relative">
             <div className="absolute flex items-center justify-center flex-col w-full h-full">
@@ -187,12 +180,12 @@ export default function AddVehicles() {
             </div>
             <div className="mt-2 flex gap-2">
             {imagePreviews.length > 0 && imagePreviews.map((image, index) => (
-              <div key={index} className="mt-2 w-full">
+              <div key={index} className="mt-2 w-full relative">
                 <Image 
                   src={image} 
                   alt={`Imagem do Veículo ${index}`} 
                   fill={true}
-                  className="object-cover object-center"
+                  className="object-cover object-center h-60 w-full"
                 />
               </div>
             ))}
@@ -242,7 +235,7 @@ export default function AddVehicles() {
               <label htmlFor="km">Km: </label>
               <Input
                 name="km"
-                type="text"
+                type="number"
                 id="km"
                 placeholder="Qual é a kilometragem do veiculo?"
                 register={register}
@@ -254,7 +247,7 @@ export default function AddVehicles() {
               <label htmlFor="year">Ano: </label>
               <Input
                 name="year"
-                type="string"
+                type="number"
                 id="year"
                 placeholder="2025/2025"
                 register={register}
@@ -388,15 +381,14 @@ export default function AddVehicles() {
 
           <div className="mt-4 mb-4">
             <button
-              type="button"
-              onClick={handleSubmit(onSubmit)}
+              type="submit"
               className="bg-blue-500 text-white py-2 px-4 rounded w-full"
             >
               Publicar Veículo
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </main>
   );
 }
