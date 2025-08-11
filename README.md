@@ -4,9 +4,6 @@ O **AutoLux Frontend** é a interface de usuário desenvolvida com **Next.js** e
 
 **Nota**: Este README é baseado no planejamento para o projeto completo, porém, o desenvolvimento do frontend está no início. Várias funcionalidades e melhorias estão sendo planejadas para as próximas versões. Este é apenas o começo!!
 
-![Home](./src/assets/home-pizzaria.jpeg)
-![Cart](./src/assets/cart-pizzaria.jpeg)
-
 ## ⚙️ Tecnologias Utilizadas
 
 - **Next.js**
