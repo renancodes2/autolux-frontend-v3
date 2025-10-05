@@ -47,10 +47,4 @@ O **AutoLux Frontend** é a interface de usuário desenvolvida com **Next.js** e
 ### ⭐ Avaliações
 - **Avaliação de veículos**: Usuários podem deixar notas e comentários para os veículos, ajudando outros usuários na escolha.
 
-### 🐳 Suporte a Docker
-- **Docker**: O projeto pode ser facilmente rodado em containers Docker, com configuração para ambientes de desenvolvimento e produção.
-- **Docker Compose**: Inclui um arquivo `docker-compose.yml` para rodar a aplicação com backend e banco de dados.
-
-### 🔁 Integração Contínua (CI)
-- **GitHub Actions**: Integração com GitHub Actions para testes automáticos e builds contínuos a cada push ou pull request.
 
