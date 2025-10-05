@@ -10,11 +10,12 @@ type User = {
   name: string;
   state: string;
   city: string;
+  role: 'ADMIN' | 'USER';
 }
 
 type AuthContextType = {
   user: User | null
-  isLoading: boolean
+  isLoading: boolean,
 }
 
 export const AuthContext = createContext({} as AuthContextType)
@@ -45,16 +46,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         .finally(() => setIsLoading(false))
     }
 
-
     getUser();
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, isLoading }}>
+    <AuthContext value={{ user, isLoading }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext>
   )
 }
 
 export const useAuth = () => useContext(AuthContext)
-

@@ -1,5 +1,5 @@
 
-export interface VehicleListing {
+export interface VehicleDetails {
     id: string;
     name: string;
     model: string;

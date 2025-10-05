@@ -1,7 +1,9 @@
 import { api } from "@/services/api";
-import { Hero } from "./_components/hero";
-import { VehicleListing } from "@/lib/types/VehicleListing.type";
-import { ListVehicles } from "./_components/listVehicles";
+import { Hero } from "./_components/hero/hero";
+import { VehicleDetails } from "@/lib/types/vehicleDetails";
+import { Footer } from "./_components/footer/footer";
+import { Main } from "./_components/main/main";
+import { getInitialUser } from "@/lib/authServer";
 
 async function getVehicles(){
   try {
@@ -15,18 +17,18 @@ async function getVehicles(){
 
 export default async function Home(){
 
-  const vehicles: VehicleListing[] = await getVehicles();
-
+  const vehicles: VehicleDetails[] = await getVehicles();
+    const user = await getInitialUser();
+  
+    console.log("this is the name user" + user?.name)
 
   return (
     <>
       <Hero />
-      <h2 className="text-2xl text-center mt-4 font-bold">Veja Alguns que estão disponivel na loja</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 max-w-7xl gap-2 mx-auto mt-10">
-        {vehicles && vehicles.map((item) => (
-          <ListVehicles key={item.id} data={item}/>
-        ))}
+      <div className="max-w-7xl mx-auto">
+        <Main vehicles={vehicles} />
       </div>
+      <Footer />
     </>
   );
 }

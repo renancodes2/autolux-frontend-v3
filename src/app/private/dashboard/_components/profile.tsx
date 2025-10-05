@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import TestProfile from "@/assets/testecar.png";
-import { useAuth } from "@/context/authContext";
+import { useAuth } from "@/context/auth_context";
 
 export function ContainerProfile(){
 

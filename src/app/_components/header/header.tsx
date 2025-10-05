@@ -1,6 +1,6 @@
 "use client"
 
-import { useAuth } from "@/context/authContext";
+import { useAuth } from "@/context/auth_context";
 import Link from "next/link";
 import { FaUser } from "react-icons/fa";
 import { FiLoader, FiLogOut } from "react-icons/fi";
@@ -8,7 +8,7 @@ import { FiLoader, FiLogOut } from "react-icons/fi";
 export function Header(){
 
   const { user, isLoading } = useAuth();
-
+  
   return (
     <header className="w-full border-b-1 border-[#909090]">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-11">
@@ -19,7 +19,7 @@ export function Header(){
         </div>
         <nav className="flex items-center font-medium gap-6">
           <Link href="#">Comprar carro</Link>
-          <Link href="#">Adiconar carro</Link>
+          {user?.role === "ADMIN" && <Link href="#">Adiconar carro</Link>}
           <Link href="#">Financiar carro</Link>
           <Link href="#">Serviços</Link>
         </nav>  

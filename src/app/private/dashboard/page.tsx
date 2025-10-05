@@ -1,7 +1,7 @@
 import { ContainerProfile } from "./_components/profile";
 
+export default async function Dashboard(){
 
-export default function Dashboard(){
   return (
     <>
       <ContainerProfile />
