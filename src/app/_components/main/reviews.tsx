@@ -22,7 +22,7 @@ export function Reviews(){
               <FiStar size={17} color="#f8d12a"/>
               <FiStar size={17} color="#f8d12a"/>
             </div>
-
+ 
             <p className="italic">
               Modelo Esportivo S90
             </p>

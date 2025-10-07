@@ -22,4 +22,4 @@ export async function getInitialUser(): Promise<User | null> {
     console.error("Erro ao buscar perfil do servidor:", err);
     return null;
   }
-}
+} 
