@@ -13,16 +13,18 @@ export function ListVehicles({ data }: VehiclesProps){
 
   return (
     <div 
-      className="shadow-md w-full p-3 rounded-md sm:max-w-80 hover:scale-105 duration-300 cursor-pointer bg-gray-50"
+      className="shadow-md w-full p-3 rounded-md sm:max-w-80 hover:scale-105 duration-300 cursor-pointer bg-gray-50 "
     >
-      <Link href={`/private/vehicles/vehicle_info/${data?.id}`}>
-        <Image
-          src={data.imageUrls[0]}
-          alt="logo"
-          width={400}
-          height={400}
-          className="rounded-md shadow-md w-full"
-        />
+    <Link href={`/private/vehicles/vehicle_info/${data?.id}`}>
+      <div className="relative h-80 md:h-50">
+          <Image
+            src={data.imageUrls[0]}
+            alt="logo"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-md shadow-md"
+          />
+      </div>
         <h2 className="pt-1 pb-2 font-bold text-[#202020]">{data.name}</h2>
         <p className="font-medium mt-1">{formatCurrency(Number(data.price))}</p>
         <div className="flex mt-1 items-center justify-between border-b-1 border-slate-200">
