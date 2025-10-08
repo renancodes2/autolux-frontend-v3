@@ -38,7 +38,6 @@ O **AutoLux Frontend** é a interface de usuário desenvolvida com **Next.js** e
 
 ### 📦 Pedidos
 - **Criação de pedidos**: Interface para os usuários criarem pedidos de compra de veículos.
-- **Histórico de pedidos**: Os usuários podem consultar o histórico de seus pedidos, com status dinâmico (PENDING, APPROVED, PREPARING, SENT, DELIVERED, CANCELLED).
 
 ### 💸 Simulação de Financiamento
 - **Simulador de financiamento**: Os usuários podem calcular o valor das parcelas, juros e o valor total do financiamento de um veículo.
